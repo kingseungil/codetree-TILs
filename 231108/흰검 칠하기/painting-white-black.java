@@ -2,12 +2,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main {
 
-    static int[][] visited = new int[10000][2];
+    static int[][] visited = new int[10000][3]; // (검은색 수, 흰색 수, 현재 색상)
 
     public static class Segment {
 
@@ -45,7 +46,7 @@ public class Main {
                     break;
                 case "L":
                     start = cur;
-                    cur -= distance - 1;
+                    cur -= (distance - 1);
                     end = cur;
                     list.add(new Segment(start, end, direction));
                     break;
@@ -59,23 +60,21 @@ public class Main {
             switch (s.direction) {
                 case "R":
                     for (int i = s.start; i <= s.end; i++) {
-                        if (visited[i][0] >= 3) {
-                            visited[i][0]++;
-                            visited[i][1] = 3;
+                        visited[i][0]++; // 검은색으로 칠한 횟수 증가
+                        if (visited[i][0] >= 2 && visited[i][1] >= 2) {
+                            visited[i][2] = 3; // 흰색과 검은색으로 각각 두 번 이상 칠해진 경우 회색으로 바꿈
                         } else {
-                            visited[i][0]++;
-                            visited[i][1] = 1;
+                            visited[i][2] = 1; // 그 외의 경우는 검은색으로 바꿈
                         }
                     }
                     break;
                 case "L":
                     for (int i = s.start; i >= s.end; i--) {
-                        if (visited[i][0] >= 3) {
-                            visited[i][0]++;
-                            visited[i][1] = 3;
+                        visited[i][1]++; // 흰색으로 칠한 횟수 증가
+                        if (visited[i][0] >= 2 && visited[i][1] >= 2) {
+                            visited[i][2] = 3; // 흰색과 검은색으로 각각 두 번 이상 칠해진 경우 회색으로 바꿈
                         } else {
-                            visited[i][0]++;
-                            visited[i][1] = 2;
+                            visited[i][2] = 2; // 그 외의 경우는 흰색으로 바꿈
                         }
                     }
                     break;
@@ -84,11 +83,11 @@ public class Main {
 
         int black = 0, white = 0, grey = 0;
         for (int i = 0; i < visited.length; i++) {
-            if (visited[i][1] == 1) {
+            if (visited[i][2] == 1) {
                 black++;
-            } else if (visited[i][1] == 2) {
+            } else if (visited[i][2] == 2) {
                 white++;
-            } else if (visited[i][1] == 3) {
+            } else if (visited[i][2] == 3) {
                 grey++;
             }
         }
@@ -139,3 +138,4 @@ public class Main {
         }
     }
 }
+
