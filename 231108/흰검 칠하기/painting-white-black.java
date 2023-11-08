@@ -2,14 +2,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main {
 
-
-    // 2번 이상 지나간 영역을 저장하는 배열
     static int[][] visited = new int[10000][2];
 
     public static class Segment {
@@ -62,7 +59,7 @@ public class Main {
             switch (s.direction) {
                 case "R":
                     for (int i = s.start; i <= s.end; i++) {
-                        if (visited[i][0] >= 2) {
+                        if (visited[i][0] >= 3) {
                             visited[i][0]++;
                             visited[i][1] = 3;
                         } else {
@@ -73,12 +70,12 @@ public class Main {
                     break;
                 case "L":
                     for (int i = s.start; i >= s.end; i--) {
-                        if (visited[i][0] >= 2) {
+                        if (visited[i][0] >= 3) {
                             visited[i][0]++;
                             visited[i][1] = 3;
                         } else {
                             visited[i][0]++;
-                            visited[i][1] = 1;
+                            visited[i][1] = 2;
                         }
                     }
                     break;
@@ -95,7 +92,6 @@ public class Main {
                 grey++;
             }
         }
-
         System.out.println(white + " " + black + " " + grey);
     }
 
