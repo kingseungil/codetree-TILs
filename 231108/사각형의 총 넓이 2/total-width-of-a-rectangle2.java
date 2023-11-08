@@ -12,10 +12,10 @@ public class Main {
         int n = rd.nextInt();
         for (int i = 0; i < n; i++) {
 
-            int x1 = rd.nextInt();
-            int y1 = rd.nextInt();
-            int x2 = rd.nextInt();
-            int y2 = rd.nextInt();
+            int x1 = rd.nextInt() + 100;
+            int y1 = rd.nextInt() + 100;
+            int x2 = rd.nextInt() + 100;
+            int y2 = rd.nextInt() + 100;
 
             for (int x = x1; x < x2; x++) {
                 for (int y = y1; y < y2; y++) {
