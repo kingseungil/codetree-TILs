@@ -1,26 +1,21 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.List;
 import java.util.StringTokenizer;
-import java.util.stream.Collectors;
 
 public class Main {
 
     static boolean[][] visited = new boolean[201][201];
-    
+
     public static void main(String[] args) {
         FastReader rd = new FastReader();
         int n = rd.nextInt();
         for (int i = 0; i < n; i++) {
-            List<Integer> input = Arrays.stream(rd.nextLine().split(" ")).map(Integer::parseInt)
-                                        .collect(Collectors.toList());
 
-            int x1 = input.get(0) + 100;
-            int y1 = input.get(1) + 100;
-            int x2 = input.get(2) + 100;
-            int y2 = input.get(3) + 100;
+            int x1 = rd.nextInt();
+            int y1 = rd.nextInt();
+            int x2 = rd.nextInt();
+            int y2 = rd.nextInt();
 
             for (int x = x1; x < x2; x++) {
                 for (int y = y1; y < y2; y++) {
