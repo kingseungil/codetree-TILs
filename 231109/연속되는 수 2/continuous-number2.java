@@ -22,9 +22,9 @@ public class Main {
             if (arr[i] == arr[i - 1]) {
                 currentCnt++;
             } else if (arr[i] != arr[i - 1]) {
-                maxCnt = Math.max(maxCnt, currentCnt);
                 currentCnt = 1;
             }
+            maxCnt = Math.max(maxCnt, currentCnt);
         }
         System.out.println(maxCnt);
     }
