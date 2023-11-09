@@ -5,8 +5,8 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    static int[] aPos = new int[2001];
-    static int[] bPos = new int[2001];
+    static int[] aPos = new int[2_000_001];
+    static int[] bPos = new int[2_000_001];
 
     public static void main(String[] args) {
         FastReader rd = new FastReader();
@@ -21,7 +21,7 @@ public class Main {
 
         int maxTime = Math.max(aTime, bTime);
         for (int i = 1; i <= maxTime; i++) {
-            if (aPos[i + 1000] == bPos[i + 1000]) {
+            if (aPos[i + 1000000] == bPos[i + 1000000]) {
                 System.out.println(i);
                 return;
             }
@@ -35,11 +35,11 @@ public class Main {
             int t = rd.nextInt();
             if (d.equals("L")) {
                 for (int j = 1; j <= t; j++) {
-                    pos[time + j + 1000] = pos[time + j - 1 + 1000] - 1;
+                    pos[time + j + 1000000] = pos[time + j - 1 + 1000000] - 1;
                 }
             } else {
                 for (int j = 1; j <= t; j++) {
-                    pos[time + j + 1000] = pos[time + j - 1 + 1000] + 1;
+                    pos[time + j + 1000000] = pos[time + j - 1 + 1000000] + 1;
                 }
             }
             time += t;
