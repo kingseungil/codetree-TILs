@@ -13,13 +13,17 @@ public class Main {
             arr[i] = rd.nextInt();
         }
 
-        int cnt = 1;
+        int currentCnt = 1;
+        int maxCnt = 0;
         for (int i = 1; i < arr.length; i++) {
             if (arr[i] == arr[i - 1]) {
-                cnt++;
+                currentCnt++;
+            } else if (arr[i] != arr[i - 1]) {
+                maxCnt = Math.max(maxCnt, currentCnt);
+                currentCnt = 1;
             }
         }
-        System.out.println(cnt);
+        System.out.println(maxCnt);
     }
 
 
