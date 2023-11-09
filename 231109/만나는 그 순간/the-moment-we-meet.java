@@ -21,7 +21,7 @@ public class Main {
 
         int maxTime = Math.max(aTime, bTime);
         for (int i = 1; i <= maxTime; i++) {
-            if (aPos[i] == bPos[i]) {
+            if (aPos[i + 1000] == bPos[i + 1000]) {
                 System.out.println(i);
                 return;
             }
