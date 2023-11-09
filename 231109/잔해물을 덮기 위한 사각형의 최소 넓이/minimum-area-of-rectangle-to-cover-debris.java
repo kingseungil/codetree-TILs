@@ -19,9 +19,14 @@ public class Main {
         int x2 = Math.max(rect1[0], rect1[2]);
         int y2 = Math.max(rect1[1], rect1[3]);
 
-        // 넓이
-        int area = (x2 - x1) * (y2 - y1);
-        System.out.println(area);
+        // rect1이 rect2 안에 있는 경우
+        if (x1 >= rect2[0] && y1 >= rect2[1] && x2 <= rect2[2] && y2 <= rect2[3]) {
+            System.out.println(0);
+            return;
+        }
+
+        System.out.println((x2 - x1) * (y2 - y1));
+
     }
 
 
