@@ -5,48 +5,47 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    static int[] aPos = new int[2_000_001];
-    static int[] bPos = new int[2_000_001];
+    static int[] posA = new int[1_000_001];
+    static int[] posB = new int[1_000_001];
 
     public static void main(String[] args) {
         FastReader rd = new FastReader();
         int n = rd.nextInt();
         int m = rd.nextInt();
 
-        int aTime = 0, bTime = 0;
+        // A가 매 초마다 서있는 위치를 기록
+        int timeA = recordPosition(n, rd, posA);
+        // B가 매 초마다 서있는 위치를 기록
+        int timeB = recordPosition(m, rd, posB);
 
-        aTime = getTime(rd, n, aPos, aTime);
-
-        bTime = getTime(rd, m, bPos, bTime);
-
-        int maxTime = Math.max(aTime, bTime);
-        for (int i = 1; i <= maxTime; i++) {
-            if (aPos[i + 1000000] == bPos[i + 1000000]) {
-                System.out.println(i);
-                return;
+        int firstMeetTime = -1;
+        for (int i = 1; i < timeA; i++) {
+            if (posA[i] == posB[i]) {
+                firstMeetTime = i;
+                break;
             }
         }
-        System.out.println(-1);
+        System.out.println(firstMeetTime);
     }
 
-    private static int getTime(FastReader rd, int m, int[] pos, int time) {
-        for (int i = 0; i < m; i++) {
-            String d = rd.next();
+    public static int recordPosition(int limit, FastReader rd, int[] pos) {
+        int time = 1;
+        for (int i = 0; i < limit; i++) {
+            char d = rd.next().charAt(0);
             int t = rd.nextInt();
-            if (d.equals("L")) {
-                for (int j = 1; j <= t; j++) {
-                    pos[time + j + 1000000] = pos[time + j - 1 + 1000000] - 1;
+
+            while (t-- > 0) {
+                if (d == 'R') {
+                    pos[time] = pos[time - 1] + 1;
+                } else {
+                    pos[time] = pos[time - 1] - 1;
                 }
-            } else {
-                for (int j = 1; j <= t; j++) {
-                    pos[time + j + 1000000] = pos[time + j - 1 + 1000000] + 1;
-                }
+
+                time++;
             }
-            time += t;
         }
         return time;
     }
-
 
     static class FastReader {
 
