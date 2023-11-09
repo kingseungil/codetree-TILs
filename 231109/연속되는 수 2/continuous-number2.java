@@ -15,6 +15,9 @@ public class Main {
 
         int currentCnt = 1;
         int maxCnt = 0;
+        if (arr.length == 1) {
+            maxCnt = 1;
+        }
         for (int i = 1; i < arr.length; i++) {
             if (arr[i] == arr[i - 1]) {
                 currentCnt++;
