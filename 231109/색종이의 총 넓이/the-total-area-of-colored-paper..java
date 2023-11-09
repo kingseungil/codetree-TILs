@@ -5,27 +5,23 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    static boolean[][] visited = new boolean[200][200];
+    static int[][] visited = new int[200][200];
 
     public static void main(String[] args) {
         FastReader rd = new FastReader();
         int n = rd.nextInt();
 
+        int area = 0;
         for (int i = 0; i < n; i++) {
             int x1 = rd.nextInt() + 100;
             int y1 = rd.nextInt() + 100;
 
             for (int x = x1; x < x1 + 8; x++) {
                 for (int y = y1; y < y1 + 8; y++) {
-                    visited[x][y] = true;
-                }
-            }
-        }
-        int area = 0;
-        for (int x = 0; x < visited.length; x++) {
-            for (int y = 0; y < visited.length; y++) {
-                if (visited[x][y]) {
-                    area++;
+                    if (visited[x][y] == 0) {
+                        visited[x][y]++;
+                        area++;
+                    }
                 }
             }
         }
