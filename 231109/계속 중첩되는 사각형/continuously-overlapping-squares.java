@@ -18,17 +18,9 @@ public class Main {
             int y2 = rd.nextInt() + 100;
 
             // 1 : 빨강, 2 : 파랑
-            if (i % 2 == 0) {
-                for (int x = x1; x < x2; x++) {
-                    for (int y = y1; y < y2; y++) {
-                        grid[x][y] = 1;
-                    }
-                }
-            } else {
-                for (int x = x1; x < x2; x++) {
-                    for (int y = y1; y < y2; y++) {
-                        grid[x][y] = 2;
-                    }
+            for (int x = x1; x < x2; x++) {
+                for (int y = y1; y < y2; y++) {
+                    grid[x][y] = i % 2 == 0 ? 1 : 2;
                 }
             }
         }
