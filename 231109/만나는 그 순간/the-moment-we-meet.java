@@ -32,7 +32,7 @@ public class Main {
     private static int getTime(FastReader rd, int m, int[] pos, int time) {
         for (int i = 0; i < m; i++) {
             String d = rd.next();
-            int t = rd.nextInt();
+            int t = rd.nextInt() + 1000;
             if (d.equals("L")) {
                 for (int j = 1; j <= t; j++) {
                     pos[time + j] = pos[time + j - 1] - 1;
