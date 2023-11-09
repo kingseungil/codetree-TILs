@@ -32,14 +32,14 @@ public class Main {
     private static int getTime(FastReader rd, int m, int[] pos, int time) {
         for (int i = 0; i < m; i++) {
             String d = rd.next();
-            int t = rd.nextInt() + 1000;
+            int t = rd.nextInt();
             if (d.equals("L")) {
                 for (int j = 1; j <= t; j++) {
-                    pos[time + j] = pos[time + j - 1] - 1;
+                    pos[time + j + 1000] = pos[time + j - 1 + 1000] - 1;
                 }
             } else {
                 for (int j = 1; j <= t; j++) {
-                    pos[time + j] = pos[time + j - 1] + 1;
+                    pos[time + j + 1000] = pos[time + j - 1 + 1000] + 1;
                 }
             }
             time += t;
