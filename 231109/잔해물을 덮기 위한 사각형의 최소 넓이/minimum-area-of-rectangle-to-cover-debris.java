@@ -5,38 +5,41 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    static int[][] visited = new int[2000][2000];
+    static int[][] grid = new int[2001][2001];
 
     public static void main(String[] args) {
         FastReader rd = new FastReader();
 
         // {x1, y1, x2, y2}
-        int[] rect1 = {rd.nextInt(), rd.nextInt(), rd.nextInt(), rd.nextInt()};
-        int[] rect2 = {rd.nextInt(), rd.nextInt(), rd.nextInt(), rd.nextInt()};
+        int[] rect1 = {rd.nextInt() + 1000, rd.nextInt() + 1000, rd.nextInt() + 1000, rd.nextInt() + 1000};
+        int[] rect2 = {rd.nextInt() + 1000, rd.nextInt() + 1000, rd.nextInt() + 1000, rd.nextInt() + 1000};
 
-        // rect1이 rect2 안에 있는 경우
-        if (rect2[0] <= rect1[0] && rect2[1] <= rect1[1] && rect1[2] <= rect2[2] && rect1[3] <= rect2[3]) {
-            System.out.println((rect1[2] - rect1[0]) * (rect1[3] - rect1[1]));
-            return;
-        }
-        // rect1넓이 - 겹치는 부분
-        System.out.println((rect1[2] - rect1[0]) * (rect1[3] - rect1[1]) - getOverlapArea(rect1, rect2));
-    }
-
-    private static int getOverlapArea(int[] rect1, int[] rect2) {
-        int area = 0;
         for (int i = rect1[0]; i < rect1[2]; i++) {
             for (int j = rect1[1]; j < rect1[3]; j++) {
-                if (isInRect(i, j, rect2)) {
-                    area++;
+                grid[i][j] = 1;
+            }
+        }
+        for (int i = rect2[0]; i < rect2[2]; i++) {
+            for (int j = rect2[1]; j < rect2[3]; j++) {
+                grid[i][j] = 0;
+            }
+        }
+
+        int minX = 2001, minY = 2001, maxX = -1, maxY = -1;
+        for (int i = 0; i < 2001; i++) {
+            for (int j = 0; j < 2001; j++) {
+                if (grid[i][j] == 1) {
+                    minX = Math.min(minX, i);
+                    minY = Math.min(minY, j);
+                    maxX = Math.max(maxX, i);
+                    maxY = Math.max(maxY, j);
                 }
             }
         }
-        return area;
-    }
 
-    private static boolean isInRect(int x, int y, int[] rect2) {
-        return rect2[0] <= x && x < rect2[2] && rect2[1] <= y && y < rect2[3];
+
+        int result = (maxX - minX + 1) * (maxY - minY + 1); // 잔해를 덮는 최소 크기의 직사각형의 넓이
+        System.out.println(result);
     }
 
 
