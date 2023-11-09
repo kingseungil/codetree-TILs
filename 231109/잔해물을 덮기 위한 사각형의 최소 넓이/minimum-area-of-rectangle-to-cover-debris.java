@@ -14,6 +14,12 @@ public class Main {
         int[] rect1 = {rd.nextInt() + 1000, rd.nextInt() + 1000, rd.nextInt() + 1000, rd.nextInt() + 1000};
         int[] rect2 = {rd.nextInt() + 1000, rd.nextInt() + 1000, rd.nextInt() + 1000, rd.nextInt() + 1000};
 
+        // rect1이 rect2에 덮히는 경우
+        if (rect1[0] >= rect2[0] && rect1[1] >= rect2[1] && rect1[2] <= rect2[2] && rect1[3] <= rect2[3]) {
+            System.out.println(0);
+            return;
+        }
+
         for (int i = rect1[0]; i < rect1[2]; i++) {
             for (int j = rect1[1]; j < rect1[3]; j++) {
                 grid[i][j] = 1;
