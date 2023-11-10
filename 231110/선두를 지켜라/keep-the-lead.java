@@ -5,17 +5,15 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    static double[] distancePerTime1 = new double[1_000];
-    static double[] distancePerTime2 = new double[1_000];
+    static int[] distancePerTime1 = new int[3_00];
+    static int[] distancePerTime2 = new int[3_00];
 
     public static void main(String[] args) {
         FastReader rd = new FastReader();
         int n = rd.nextInt();
         int m = rd.nextInt();
 
-        // {속도, 시간}
         calcDistance(rd, n, distancePerTime1);
-
         calcDistance(rd, m, distancePerTime2);
 
         int count = 0;
@@ -27,23 +25,24 @@ public class Main {
             } else if (distancePerTime1[i] < distancePerTime2[i]) {
                 lead = "B";
             }
-            if (!lead.equals(lastLead) && !lastLead.equals("none")) {
-                count++;
+            if (!lead.equals(lastLead)) {
+                if (!lastLead.equals("none")) {
+                    count++;
+                }
+                lastLead = lead;
             }
-            lastLead = lead;
         }
         System.out.println(count);
     }
 
-    private static void calcDistance(FastReader rd, int n, double[] distancePerTime) {
-        double current = 0;
+    private static void calcDistance(FastReader rd, int n, int[] distancePerTime) {
+        int current = 0;
         int currentTime = 0;
         for (int i = 0; i < n; i++) {
             int v = rd.nextInt();
             int t = rd.nextInt();
-            double perHour = (double) v / t;
             for (int j = currentTime; j < currentTime + t; j++) {
-                distancePerTime[j] = current + perHour;
+                distancePerTime[j] = current + v;
                 current = distancePerTime[j];
             }
             currentTime = currentTime + t;
