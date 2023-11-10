@@ -36,14 +36,12 @@ public class Main {
     }
 
     private static void calcDistance(FastReader rd, int n, int[] distancePerTime) {
-        int current = 0;
-        int currentTime = 0;
+        int currentTime = 1;
         for (int i = 0; i < n; i++) {
             int v = rd.nextInt();
             int t = rd.nextInt();
-            for (int j = currentTime; j < currentTime + t; j++) {
-                distancePerTime[j] = current + v;
-                current = distancePerTime[j];
+            for (int time = currentTime; time < currentTime + t; time++) {
+                distancePerTime[time] = distancePerTime[time - 1] + v;
             }
             currentTime = currentTime + t;
         }
