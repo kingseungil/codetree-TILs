@@ -5,8 +5,8 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    static double[] distancePerTime1 = new double[3_00];
-    static double[] distancePerTime2 = new double[3_00];
+    static double[] distancePerTime1 = new double[1_000];
+    static double[] distancePerTime2 = new double[1_000];
 
     public static void main(String[] args) {
         FastReader rd = new FastReader();
