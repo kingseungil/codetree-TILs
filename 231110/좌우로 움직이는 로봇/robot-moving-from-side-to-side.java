@@ -18,15 +18,11 @@ public class Main {
         calcTime(rd, m, timesForLocationB);
 
         int count = 0;
-        boolean wasDifferent = true;
         for (int i = 1; i < timesForLocationA.length; i++) {
             if (timesForLocationA[i] == timesForLocationB[i]) {
-                if (wasDifferent) {
+                if ((timesForLocationA[i - 1] != timesForLocationB[i - 1])) {
                     count++;
-                    wasDifferent = false;
                 }
-            } else {
-                wasDifferent = true;
             }
         }
         System.out.println(count);
