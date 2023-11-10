@@ -5,21 +5,22 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    static int[] distanceA = new int[1_000_000];
-    static int[] distanceB = new int[1_000_000];
+    static int[] timesForLocationA = new int[1_000_001];
+    static int[] timesForLocationB = new int[1_000_001];
 
     public static void main(String[] args) {
         FastReader rd = new FastReader();
         int n = rd.nextInt();
         int m = rd.nextInt();
 
-        calcDistance(rd, n, distanceA);
-        calcDistance(rd, m, distanceB);
+        calcTime(rd, n, timesForLocationA);
+
+        calcTime(rd, m, timesForLocationB);
 
         int count = 0;
         boolean wasDifferent = true;
-        for (int i = 0; i < distanceA.length; i++) {
-            if (distanceA[i] == distanceB[i]) {
+        for (int i = 1; i < timesForLocationA.length; i++) {
+            if (timesForLocationA[i] == timesForLocationB[i]) {
                 if (wasDifferent) {
                     count++;
                     wasDifferent = false;
@@ -31,22 +32,28 @@ public class Main {
         System.out.println(count);
     }
 
-    private static void calcDistance(FastReader rd, int n, int[] distances) {
-        int current = 500_000;
+    private static void calcTime(FastReader rd, int n, int[] locations) {
+        int curLocation = 500_000;
+        int curTime = 1;
+        locations[0] = curLocation;
         for (int i = 0; i < n; i++) {
             int t = rd.nextInt();
             String d = rd.next();
             if (d.equals("R")) {
-                for (int time = current; time < current + t; time++) {
-                    distances[time]++;
+                for (int time = curTime; time < curTime + t; time++) {
+                    locations[time] = ++curLocation;
                 }
-                current = current + t;
+                curTime = curTime + t;
             } else if (d.equals("L")) {
-                for (int time = current; time > current - t; time--) {
-                    distances[time]++;
+                for (int time = curTime; time < curTime + t; time++) {
+                    locations[time] = --curLocation;
                 }
-                current = current - t;
+                curTime = curTime + t;
             }
+        }
+
+        for (int time = curTime; time < locations.length; time++) {
+            locations[time] = locations[curTime - 1];
         }
     }
 
