@@ -13,12 +13,23 @@ public class Main {
         int n = rd.nextInt();
         int m = rd.nextInt();
 
-        calcTime(rd, n, timesForLocationA);
+        int timeA = calcTime(rd, n, timesForLocationA);
+        int timeB = calcTime(rd, m, timesForLocationB);
 
-        calcTime(rd, m, timesForLocationB);
+        // 최적화 (원래 전체를 전 값으로 채웠음)
+        if (timeA < timeB) {
+            for (int i = timeA; i < timeB; i++) {
+                timesForLocationA[i] = timesForLocationA[timeA - 1];
+            }
+        } else if (timeA > timeB) {
+            for (int i = timeB; i < timeA; i++) {
+                timesForLocationB[i] = timesForLocationB[timeB - 1];
+            }
+        }
 
+        int maxTime = Math.max(timeA, timeB);
         int count = 0;
-        for (int i = 1; i < timesForLocationA.length; i++) {
+        for (int i = 1; i < maxTime; i++) {
             if (timesForLocationA[i] == timesForLocationB[i]) {
                 if ((timesForLocationA[i - 1] != timesForLocationB[i - 1])) {
                     count++;
@@ -28,7 +39,7 @@ public class Main {
         System.out.println(count);
     }
 
-    private static void calcTime(FastReader rd, int n, int[] locations) {
+    private static int calcTime(FastReader rd, int n, int[] locations) {
         int curLocation = 500_000;
         int curTime = 1;
         locations[0] = curLocation;
@@ -47,10 +58,7 @@ public class Main {
                 curTime = curTime + t;
             }
         }
-
-        for (int time = curTime; time < locations.length; time++) {
-            locations[time] = locations[curTime - 1];
-        }
+        return curTime;
     }
 
 
