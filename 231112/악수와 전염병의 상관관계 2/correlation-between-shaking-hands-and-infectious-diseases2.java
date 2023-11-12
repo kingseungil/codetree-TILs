@@ -1,3 +1,5 @@
+package codetree;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,11 +13,13 @@ class Handshake {
     int time;
     int x;
     int y;
+    int infectedDeveloper;
 
-    Handshake(int time, int x, int y) {
+    public Handshake(int time, int x, int y, int infectedDeveloper) {
         this.time = time;
         this.x = x;
         this.y = y;
+        this.infectedDeveloper = infectedDeveloper;
     }
 }
 
@@ -66,7 +70,8 @@ public class Main {
             int x = rd.nextInt(); // 개발자 x
             int y = rd.nextInt(); // 개발자 y
 
-            handshakes.add(new Handshake(t, x, y));
+            int infectedDeveloper = developers[x].isInfect > developers[y].isInfect ? x : y;
+            handshakes.add(new Handshake(t, x, y, infectedDeveloper));
         }
 
         handshakes.sort(Comparator.comparingInt(h -> h.time));
@@ -77,8 +82,11 @@ public class Main {
             if (x.canInfect(K) || y.canInfect(K)) {
                 x.infect();
                 y.infect();
-                x.increaseInfectionCount();
-                y.increaseInfectionCount();
+                if (handshake.infectedDeveloper == x.idx) {
+                    x.increaseInfectionCount();
+                } else {
+                    y.increaseInfectionCount();
+                }
             }
         }
 
