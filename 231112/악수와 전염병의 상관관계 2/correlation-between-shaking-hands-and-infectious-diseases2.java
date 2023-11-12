@@ -74,22 +74,20 @@ public class Main {
             Developer x = developers[handshake.x];
             Developer y = developers[handshake.y];
 
-            if (x.isInfect == 1 && x.infectionCount < K) {
-                if (y.isInfect == 1) {
+            if (x.canInfect(K)) {
+                if (y.isInfect == 1) { // 둘 다 감염
                     x.increaseInfectionCount();
                     y.increaseInfectionCount();
-                }
-                x.increaseInfectionCount();
-                if (y.isInfect == 0) {
+                } else { // x만 감염
+                    x.increaseInfectionCount();
                     y.infect();
                 }
-            } else if (y.isInfect == 1 && y.infectionCount < K) {
-                if (x.isInfect == 1) {
+            } else if (y.canInfect(K)) {
+                if (x.isInfect == 1) { // 둘 다 감염
                     x.increaseInfectionCount();
                     y.increaseInfectionCount();
-                }
-                y.increaseInfectionCount();
-                if (x.isInfect == 0) {
+                } else { // y만 감염
+                    y.increaseInfectionCount();
                     x.infect();
                 }
             }
