@@ -95,11 +95,6 @@ public class Main {
             }
         }
 
-        System.out.println("=================");
-        for (Handshake handshake : handshakes) {
-            System.out.println(handshake.time + " " + handshake.x + " " + handshake.y);
-        }
-
         for (int i = 1; i <= N; i++) {
             System.out.print(developers[i].isInfect);
         }
