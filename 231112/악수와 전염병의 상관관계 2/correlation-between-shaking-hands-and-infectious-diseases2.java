@@ -75,16 +75,29 @@ public class Main {
             Developer y = developers[handshake.y];
 
             if (x.isInfect == 1 && x.infectionCount < K) {
+                if (y.isInfect == 1) {
+                    x.increaseInfectionCount();
+                    y.increaseInfectionCount();
+                }
                 x.increaseInfectionCount();
                 if (y.isInfect == 0) {
                     y.infect();
                 }
             } else if (y.isInfect == 1 && y.infectionCount < K) {
+                if (x.isInfect == 1) {
+                    x.increaseInfectionCount();
+                    y.increaseInfectionCount();
+                }
                 y.increaseInfectionCount();
                 if (x.isInfect == 0) {
                     x.infect();
                 }
             }
+        }
+
+        System.out.println("=================");
+        for (Handshake handshake : handshakes) {
+            System.out.println(handshake.time + " " + handshake.x + " " + handshake.y);
         }
 
         for (int i = 1; i <= N; i++) {
