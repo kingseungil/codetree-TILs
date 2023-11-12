@@ -74,12 +74,16 @@ public class Main {
             Developer x = developers[handshake.x];
             Developer y = developers[handshake.y];
 
-            if (x.canInfect(K)) {
+            if (x.isInfect == 1 && x.infectionCount < K) {
                 x.increaseInfectionCount();
-                y.infect();
-            } else if (y.canInfect(K)) {
+                if (y.isInfect == 0) {
+                    y.infect();
+                }
+            } else if (y.isInfect == 1 && y.infectionCount < K) {
                 y.increaseInfectionCount();
-                x.infect();
+                if (x.isInfect == 0) {
+                    x.infect();
+                }
             }
         }
 
