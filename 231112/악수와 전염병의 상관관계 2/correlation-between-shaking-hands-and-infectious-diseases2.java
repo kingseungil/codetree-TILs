@@ -11,13 +11,11 @@ class Handshake {
     int time;
     int x;
     int y;
-    int infectedDeveloper;
 
-    public Handshake(int time, int x, int y, int infectedDeveloper) {
+    public Handshake(int time, int x, int y) {
         this.time = time;
         this.x = x;
         this.y = y;
-        this.infectedDeveloper = infectedDeveloper;
     }
 }
 
@@ -48,7 +46,6 @@ class Developer {
 
 public class Main {
 
-
     public static void main(String[] args) {
         FastReader rd = new FastReader();
         int N = rd.nextInt(); // N명
@@ -68,8 +65,7 @@ public class Main {
             int x = rd.nextInt(); // 개발자 x
             int y = rd.nextInt(); // 개발자 y
 
-            int infectedDeveloper = developers[x].isInfect > developers[y].isInfect ? x : y;
-            handshakes.add(new Handshake(t, x, y, infectedDeveloper));
+            handshakes.add(new Handshake(t, x, y));
         }
 
         handshakes.sort(Comparator.comparingInt(h -> h.time));
@@ -77,14 +73,13 @@ public class Main {
         for (Handshake handshake : handshakes) {
             Developer x = developers[handshake.x];
             Developer y = developers[handshake.y];
-            if (x.canInfect(K) || y.canInfect(K)) {
-                x.infect();
+
+            if (x.canInfect(K)) {
+                x.increaseInfectionCount();
                 y.infect();
-                if (handshake.infectedDeveloper == x.idx) {
-                    x.increaseInfectionCount();
-                } else {
-                    y.increaseInfectionCount();
-                }
+            } else if (y.canInfect(K)) {
+                y.increaseInfectionCount();
+                x.infect();
             }
         }
 
@@ -92,7 +87,6 @@ public class Main {
             System.out.print(developers[i].isInfect);
         }
     }
-
 
     static class FastReader {
 
