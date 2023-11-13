@@ -22,18 +22,18 @@ public class Main {
 
         int cnt = 0;
         for (int i = 0; i < n; i++) {
-            int currentCnt = 0;
             for (int j = 0; j < n; j++) {
+                int currentCnt = 0;
                 for (int dir = 0; dir < 4; dir++) {
-                    int x = grid[i][j] + dx[dir];
-                    int y = grid[i][j] + dy[dir];
+                    int x = i + dx[dir];
+                    int y = j + dy[dir];
                     if (inRange(x, y) && grid[x][y] == 1) {
                         currentCnt++;
                     }
                 }
-            }
-            if (currentCnt >= 3) {
-                cnt++;
+                if (currentCnt >= 3) {
+                    cnt++;
+                }
             }
         }
         System.out.println(cnt);
