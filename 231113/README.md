@@ -8,10 +8,12 @@
 
 |총 문제수|획득 경험치|연속 학습|
 |---:|---:|---|
-1|110xp|2일째🔥|
+3|110xp|2일째🔥|
 
 |교재|이름|난이도|상태|최근 제출 코드|
 |---|---|:---:|:---:|---|
+|[Novice Mid / 시뮬레이션 II / dx dy technique](https://www.codetree.ai/missions?missionId=5)|[[개념]1이 3개 이상 있는 위치](https://www.codetree.ai/missions/5/problems/place-more-than-3-ones)|![보통][medium]|![Passed][passed]|[링크](https://github.com/kingseungil/codetree-TILs/blob/main/231113/1%EC%9D%B4%203%EA%B0%9C%20%EC%9D%B4%EC%83%81%20%EC%9E%88%EB%8A%94%20%EC%9C%84%EC%B9%98/place-more-than-3-ones.java)|
+|[Novice Mid / 시뮬레이션 II / dx dy technique](https://www.codetree.ai/missions?missionId=5)|[[개념]작은 구슬의 이동](https://www.codetree.ai/missions/5/problems/small-marble-movement)|![보통][medium]|![Passed][passed]|[링크](https://github.com/kingseungil/codetree-TILs/blob/main/231113/%EC%9E%91%EC%9D%80%20%EA%B5%AC%EC%8A%AC%EC%9D%98%20%EC%9D%B4%EB%8F%99/small-marble-movement.java)|
 |[Novice Mid / 시뮬레이션 II / dx dy technique](https://www.codetree.ai/missions?missionId=5)|[[개념]빙빙 돌며 숫자 사각형 채우기](https://www.codetree.ai/missions/5/problems/snail-number-square)|![어려움][hard]|![Passed][passed]|[링크](https://github.com/kingseungil/codetree-TILs/blob/main/231113/%EB%B9%99%EB%B9%99%20%EB%8F%8C%EB%A9%B0%20%EC%88%AB%EC%9E%90%20%EC%82%AC%EA%B0%81%ED%98%95%20%EC%B1%84%EC%9A%B0%EA%B8%B0/snail-number-square.java)|
 
 
