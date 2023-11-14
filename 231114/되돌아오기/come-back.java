@@ -32,7 +32,7 @@ public class Main {
 
                 result++;
 
-                if (x == 500 && y == 500) {
+                if (x == 0 && y == 0) {
                     break loop;
                 }
             }
