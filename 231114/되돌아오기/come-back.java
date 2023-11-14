@@ -11,8 +11,8 @@ public class Main {
     static int n;
 
     // 시작점
-    static int x = 500;
-    static int y = 500;
+    static int x = 0;
+    static int y = 0;
 
     public static void main(String[] args) {
         FastReader rd = new FastReader();
@@ -38,9 +38,14 @@ public class Main {
             }
         }
 
-        System.out.println(result);
+        if (x != 0 || y != 0) {
+            System.out.println(-1);
+        } else {
+            System.out.println(result);
+        }
+
     }
-    
+
     private static int getDirNum(String s) {
         int dir = -1;
         switch (s) {
