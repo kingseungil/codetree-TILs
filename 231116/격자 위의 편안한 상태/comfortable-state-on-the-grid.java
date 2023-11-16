@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -9,20 +10,24 @@ public class Main {
     static int[] dx = new int[]{0, 1, 0, -1};
     static int[] dy = new int[]{1, 0, -1, 0};
     static int[][] grid;
+    static int n;
 
     // 시작점
     static int x = 0;
     static int y = 0;
 
+    // 시작 방향
+    static int dir = 0;
+
     public static void main(String[] args) {
         FastReader rd = new FastReader();
-        int n = rd.nextInt();
+        n = rd.nextInt();
         int m = rd.nextInt();
-        grid = new int[n + 2][n + 2];
+        grid = new int[n][n];
 
         for (int i = 0; i < m; i++) {
-            int x = rd.nextInt();
-            int y = rd.nextInt();
+            int x = rd.nextInt() - 1;
+            int y = rd.nextInt() - 1;
             // 색칠
             grid[x][y] = 1;
             // 확인
@@ -34,20 +39,18 @@ public class Main {
         }
     }
 
+    private static boolean inRange(int x, int y) {
+        return 0 <= x && x < n && 0 <= y && y < n;
+    }
+
     private static boolean check(int x, int y) {
         // 상 하 좌 우 체크
         int count = 0;
-        if (grid[x + 1][y] == 1) {
-            count++;
-        }
-        if (grid[x - 1][y] == 1) {
-            count++;
-        }
-        if (grid[x][y - 1] == 1) {
-            count++;
-        }
-        if (grid[x][y + 1] == 1) {
-            count++;
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dx[i], ny = y + dy[i];
+            if (inRange(nx, ny) && grid[nx][ny] == 1) {
+                count++;
+            }
         }
         return count == 3;
     }
