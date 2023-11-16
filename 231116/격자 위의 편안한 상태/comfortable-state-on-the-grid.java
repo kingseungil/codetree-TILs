@@ -49,7 +49,7 @@ public class Main {
         if (grid[x][y + 1] == 1) {
             count++;
         }
-        return count >= 3;
+        return count == 3;
     }
 
 
