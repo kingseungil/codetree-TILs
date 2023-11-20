@@ -26,9 +26,9 @@ public class Main {
 
         for (int i = 0; i < n; i++) {
             String[] input = rd.nextLine().split("");
-            grid[i][0] = input[0].charAt(0);
-            grid[i][1] = input[1].charAt(0);
-            grid[i][2] = input[2].charAt(0);
+            for (int j = 0; j < n; j++) {
+                grid[i][j] = input[j].charAt(0);
+            }
         }
 
         k = rd.nextInt();
