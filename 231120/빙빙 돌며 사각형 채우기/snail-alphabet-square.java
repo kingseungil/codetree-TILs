@@ -26,7 +26,7 @@ public class Main {
         grid = new char[n][m];
         grid[x][y] = 65;
 
-        char currentChar = 65;
+        char currentChar = 66;
         for (int i = 2; i <= n * m; i++) {
             int nx = x + dx[dir], ny = y + dy[dir];
             if (!inRange(nx, ny) || grid[nx][ny] != 0) {
@@ -35,13 +35,9 @@ public class Main {
             x += dx[dir];
             y += dy[dir];
 
-            if (currentChar == 90) {
-                currentChar = 65;
-            } else {
-                currentChar += 1;
-            }
-
             grid[x][y] = currentChar;
+
+            currentChar = (char) ((i % 26) + 65);
         }
 
         for (int i = 0; i < n; i++) {
