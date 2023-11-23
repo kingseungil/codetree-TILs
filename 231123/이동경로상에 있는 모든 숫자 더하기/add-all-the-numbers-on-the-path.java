@@ -26,9 +26,9 @@ public class Main {
         String command = rd.next();
 
         for (int i = 0; i < n; i++) {
-            grid[i][0] = rd.nextInt();
-            grid[i][1] = rd.nextInt();
-            grid[i][2] = rd.nextInt();
+            for (int j = 0; j < n; j++) {
+                grid[i][j] = rd.nextInt();
+            }
         }
 
         // 시작점 설정(가운데)
