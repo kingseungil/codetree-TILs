@@ -5,28 +5,34 @@ import java.util.StringTokenizer;
 
 public class Main {
 
+
     public static void main(String[] args) {
         FastReader rd = new FastReader();
-        int a = rd.nextInt(); // 2진수라고 가정
-
         StringBuilder sb = new StringBuilder();
+        int a = rd.nextInt(); // 2진수라고 가정
+        
         // a 각 자리 숫자 sb에 저장
         while (a > 0) {
             sb.append(a % 10);
             a /= 10;
         }
-        int max = getDecimal(a);
 
         // sb 역순
         sb.reverse();
 
-        // sb 순회하면서 0을 1로 바꿔보고 10진수로 변환
+        int max = Integer.MIN_VALUE;
+        // sb 순회하면서 0->1, 1->0으로 바꿔보고 10진수로 변환
         for (int i = 0; i < sb.length(); i++) {
             if (sb.charAt(i) == '0') {
                 sb.setCharAt(i, '1');
                 int decimal = getDecimal(Integer.parseInt(sb.toString()));
                 max = Math.max(max, decimal);
                 sb.setCharAt(i, '0');
+            } else {
+                sb.setCharAt(i, '0');
+                int decimal = getDecimal(Integer.parseInt(sb.toString()));
+                max = Math.max(max, decimal);
+                sb.setCharAt(i, '1');
             }
         }
 
