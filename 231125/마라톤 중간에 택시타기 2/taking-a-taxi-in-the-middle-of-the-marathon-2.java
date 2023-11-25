@@ -8,15 +8,26 @@ import java.util.StringTokenizer;
 public class Main {
 
     static int N;
-    static List<String> checkPoint;
+    static List<Point> checkPoint = new ArrayList<>();
+
+    static class Point {
+
+        int x, y;
+
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
 
     public static void main(String[] args) {
         FastReader rd = new FastReader();
         N = rd.nextInt();
 
-        checkPoint = new ArrayList<>();
         for (int i = 0; i < N; i++) {
-            checkPoint.add(rd.nextLine());
+            int x = rd.nextInt();
+            int y = rd.nextInt();
+            checkPoint.add(new Point(x, y));
         }
 
         // 시작과 끝 체크포인트를 제외하고 하나씩 제외해보면서 거리 구하기
@@ -24,7 +35,7 @@ public class Main {
         for (int i = 1; i < N - 1; i++) {
             int distance = 0;
             // 복사본 생성
-            List<String> copyCheckPoint = new ArrayList<>(checkPoint);
+            List<Point> copyCheckPoint = new ArrayList<>(checkPoint);
             // i번째 체크포인트를 제외하고 거리 구하기
             copyCheckPoint.remove(i);
             for (int j = 0; j < copyCheckPoint.size() - 1; j++) {
@@ -36,13 +47,8 @@ public class Main {
         System.out.println(minDistance);
     }
 
-    private static int getDistance(String start, String end) {
-        int startX = Integer.parseInt(start.split(" ")[0]);
-        int startY = Integer.parseInt(start.split(" ")[1]);
-        int endX = Integer.parseInt(end.split(" ")[0]);
-        int endY = Integer.parseInt(end.split(" ")[1]);
-
-        return Math.abs(startX - endX) + Math.abs(startY - endY);
+    private static int getDistance(Point p1, Point p2) {
+        return Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y);
     }
 
 
