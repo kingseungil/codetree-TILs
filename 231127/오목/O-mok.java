@@ -39,11 +39,11 @@ public class Main {
             }
         }
 
-        System.out.println(winner);
-        if (winner != 0) {
-            System.out.println((winnerX + 1) + " " + (winnerY + 1));
+        if (winner == 0) {
+            System.out.println(winner);
         } else {
-            System.out.println(0);
+            System.out.println(winner);
+            System.out.println((winnerX + 1) + " " + (winnerY + 1));
         }
     }
 
