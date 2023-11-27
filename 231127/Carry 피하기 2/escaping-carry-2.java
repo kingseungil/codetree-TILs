@@ -16,7 +16,7 @@ public class Main {
             arr[i] = rd.nextInt();
         }
 
-        int max = Integer.MIN_VALUE;
+        int max = -1;
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 for (int k = j + 1; k < n; k++) {
