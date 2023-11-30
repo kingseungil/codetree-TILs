@@ -24,7 +24,7 @@ public class Main {
             for (int y1 = 0; y1 < n - 2; y1++) {
                 for (int x2 = 0; x2 < n; x2++) { // 같은 행에 있어도 ㅇㅋ
                     for (int y2 = 0; y2 < n - 2; y2++) { // 겹치지 않게 해야함
-                        if (x1 == x2 && isOverlap(y1, y2)) {
+                        if (x1 == x2 && Math.abs(y1 - y2) <= 2) {
                             continue;
                         }
                         int sum1 = grid[x1][y1] + grid[x1][y1 + 1] + grid[x1][y1 + 2];
