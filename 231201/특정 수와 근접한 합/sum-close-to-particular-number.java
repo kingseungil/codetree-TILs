@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -18,18 +19,12 @@ public class Main {
             arr[i] = rd.nextInt();
         }
 
+        int sum = Arrays.stream(arr).sum();
         int result = Integer.MAX_VALUE;
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                // i,j 위치에 있는 값을 제외하고 합 구하기
-                int sum = 0;
-                for (int k = 0; k < n; k++) {
-                    if (k == i || k == j) {
-                        continue;
-                    }
-                    sum += arr[k];
-                }
-                result = Math.min(result, Math.abs(sum - s));
+                int newSum = sum - arr[i] - arr[j];
+                result = Math.min(result, Math.abs(newSum - s));
             }
         }
         System.out.println(result);
