@@ -20,34 +20,30 @@ public class Main {
         }
         Arrays.sort(people);
 
-        if (people.length == 1) {
-            System.out.println(convertToInt(people[0].alpha));
-            return;
-        }
-
         int maxScore = getMaxScore();
         System.out.println(maxScore);
     }
 
     private static int getMaxScore() {
-        int maxScore = Integer.MIN_VALUE;
+        int maxScore = 0;
         for (int i = 0; i < n; i++) {
             int pictureSize = 0;
-            int score = convertToInt(people[i].alpha);
-            for (int j = i + 1; j < n; j++) {
-                if (pictureSize >= k) {
+            int score = 0;
+            for (int j = i; j < n; j++) {
+                // 사진 크기를 초과하면 break
+                if (j > i && pictureSize + people[j].location - people[j - 1].location > k) {
                     break;
                 }
-                int size = people[j].location - people[j - 1].location;
-                pictureSize += size;
+                if (j > i) {
+                    pictureSize += people[j].location - people[j - 1].location;
+                }
                 score += convertToInt(people[j].alpha);
             }
-            if (pictureSize == k) {
-                maxScore = Math.max(maxScore, score);
-            }
+            maxScore = Math.max(maxScore, score);
         }
         return maxScore;
     }
+
 
     private static int convertToInt(char alpha) {
         if (alpha == 'G') {
