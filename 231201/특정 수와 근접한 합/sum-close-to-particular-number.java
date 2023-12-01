@@ -1,0 +1,81 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+
+    static int n;
+    static int s;
+    static int[] arr;
+
+    public static void main(String[] args) {
+        FastReader rd = new FastReader();
+        n = rd.nextInt();
+        s = rd.nextInt();
+        arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = rd.nextInt();
+        }
+
+        int result = Integer.MAX_VALUE;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                // i,j 위치에 있는 값을 제외하고 합 구하기
+                int sum = 0;
+                for (int k = 0; k < n; k++) {
+                    if (k == i || k == j) {
+                        continue;
+                    }
+                    sum += arr[k];
+                }
+                result = Math.min(result, Math.abs(sum - s));
+            }
+        }
+        System.out.println(result);
+    }
+
+
+    static class FastReader {
+
+        BufferedReader br;
+        StringTokenizer st;
+
+        public FastReader() {
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
+
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        long nextLong() {
+            return Long.parseLong(next());
+        }
+
+        double nextDouble() {
+            return Double.parseDouble(next());
+        }
+
+        String nextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+    }
+}
