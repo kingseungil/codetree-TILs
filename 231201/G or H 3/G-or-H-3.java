@@ -20,6 +20,11 @@ public class Main {
         }
         Arrays.sort(people);
 
+        if (people.length == 1) {
+            System.out.println(convertToInt(people[0].alpha));
+            return;
+        }
+
         int maxScore = getMaxScore();
         System.out.println(maxScore);
     }
