@@ -1,52 +1,48 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
 
+    static final int MAX = 100;
     static int n, m;
-    static int[] arrA, arrB;
-    static Map<Integer, Integer> mapA, mapB; // 수열 A와 B의 원소의 빈도수를 저장할 맵
+    static int[] arrA = new int[MAX], arrB = new int[MAX];
+    static int[] temp = new int[MAX];
 
     public static void main(String[] args) {
         FastReader rd = new FastReader();
         n = rd.nextInt();
         m = rd.nextInt();
-        arrA = new int[n];
-        arrB = new int[m];
-        mapA = new HashMap<>();
-        mapB = new HashMap<>();
 
         for (int i = 0; i < n; i++) {
             arrA[i] = rd.nextInt();
         }
         for (int i = 0; i < m; i++) {
             arrB[i] = rd.nextInt();
-            mapB.put(arrB[i], mapB.getOrDefault(arrB[i], 0) + 1);
         }
+
+        Arrays.sort(arrB, 0, m);
 
         int count = 0;
-        for (int i = 0; i < Math.min(n,m); i++) {
-            mapA.put(arrA[i], mapA.getOrDefault(arrA[i], 0) + 1);
-        }
-        if (mapA.equals(mapB)) {
-            count++;
-        }
-
-        for (int i = m; i < n; i++) {
-            mapA.put(arrA[i - m], mapA.get(arrA[i - m]) - 1);
-            if (mapA.get(arrA[i - m]) == 0) {
-                mapA.remove(arrA[i - m]);
+        for (int i = 0; i <= n - m; i++) {
+            for (int j = 0; j < m; j++) {
+                temp[j] = arrA[i + j];
             }
-            mapA.put(arrA[i], mapA.getOrDefault(arrA[i], 0) + 1);
-            if (mapA.equals(mapB)) {
+            Arrays.sort(temp, 0, m);
+
+            boolean isSame = true;
+            for (int j = 0; j < m; j++) {
+                if (temp[j] != arrB[j]) {
+                    isSame = false;
+                    break;
+                }
+            }
+            if (isSame) {
                 count++;
             }
         }
-
         System.out.println(count);
     }
 
