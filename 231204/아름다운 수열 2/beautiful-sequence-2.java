@@ -29,7 +29,7 @@ public class Main {
         }
 
         int count = 0;
-        for (int i = 0; i < m; i++) {
+        for (int i = 0; i < Math.min(n,m); i++) {
             mapA.put(arrA[i], mapA.getOrDefault(arrA[i], 0) + 1);
         }
         if (mapA.equals(mapB)) {
