@@ -27,10 +27,10 @@ public class Main {
 
         // 0~200까지의 위치에 대해 최대값을 구한다.
         int max = 0;
-        for (int i = 0; i <= candies[n - 1].location; i++) {
+        for (int i = 0; i <= 200; i++) {
             int start = bestLocation - k;
             int end = bestLocation + k;
-            if (start < 0 || end > 200) {
+            if (start < 0) {
                 bestLocation++;
                 continue;
             }
