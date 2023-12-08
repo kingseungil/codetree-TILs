@@ -26,27 +26,27 @@ public class Main {
     private static int getMax() {
         int maxSize = 0;
         for (int start = 0; start < n; start++) {
-            int gCount = 0;
-            int hCount = 0;
-
-            if (people[start].alpha == 'G') {
-                gCount++;
-            } else {
-                hCount++;
-            }
             for (int end = start + 1; end < n; end++) {
-                if (people[end].alpha == 'G') {
-                    gCount++;
-                } else {
-                    hCount++;
-                }
-                if (gCount == hCount) {
+                if (isSameCount(start, end)) {
                     int size = people[end].location - people[start].location;
                     maxSize = Math.max(maxSize, size);
                 }
             }
         }
         return maxSize;
+    }
+
+    private static boolean isSameCount(int start, int end) {
+        int gCount = 0;
+        int hCount = 0;
+        for (int i = start; i <= end; i++) {
+            if (people[i].alpha == 'G') {
+                gCount++;
+            } else {
+                hCount++;
+            }
+        }
+        return gCount == hCount;
     }
 
     public static class People implements Comparable<People> {
