@@ -28,13 +28,8 @@ public class Main {
             int count = 0;
             for (int j = i; j < n; j++) {
                 // curArr을 완전탐색으로 h로 만들기
-                if (curArr[j] < h) {
-                    curArr[j] = h;
-                    cur = cur + (h - arr[j]);
-                } else if (curArr[j] > h) {
-                    curArr[j] = h;
-                    cur = cur + (arr[j] - h);
-                }
+                cur += Math.abs(curArr[j] - h);
+                curArr[j] = h;
 
                 count = getCount(curArr);
                 if (count == t) {
