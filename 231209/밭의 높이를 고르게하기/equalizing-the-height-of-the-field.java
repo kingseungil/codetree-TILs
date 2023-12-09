@@ -21,16 +21,12 @@ public class Main {
         }
 
         int min = Integer.MAX_VALUE;
-        for (int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < n; i++) {
             int cur = 0;
             int[] curArr = Arrays.copyOf(arr, arr.length);
-            for (int j = i; j < n - 1; j++) {
-                // curArr에 h인 값이 연속 t개 있는지 확인
-                int count = getCount(curArr, h);
-                if (count == t) {
-                    break;
-                }
-
+            // curArr에 h인 값이 연속 t개 있는지 확인
+            int count = 0;
+            for (int j = i; j < n; j++) {
                 // curArr을 완전탐색으로 h로 만들기
                 if (curArr[j] < h) {
                     curArr[j] = h;
@@ -39,20 +35,30 @@ public class Main {
                     curArr[j] = h;
                     cur = cur + (arr[j] - h);
                 }
+
+                count = getCount(curArr);
+                if (count == t) {
+                    break;
+                }
             }
-            min = Math.min(min, cur);
+            if (count == t) {
+                min = Math.min(min, cur);
+            }
         }
         System.out.println(min);
     }
 
-    private static int getCount(int[] curArr, int h) {
+    private static int getCount(int[] curArr) {
         int count = 0;
-        // 연속으로 h가 존재해야 count 증가
+        // 연속으로 h가 존재해야 count 증가, count가 t가 되면 break
         for (int i = 0; i < curArr.length; i++) {
             if (curArr[i] == h) {
                 count++;
             } else {
                 count = 0;
+            }
+            if (count == t) {
+                break;
             }
         }
         return count;
