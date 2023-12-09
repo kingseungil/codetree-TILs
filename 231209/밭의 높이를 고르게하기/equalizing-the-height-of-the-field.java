@@ -21,12 +21,12 @@ public class Main {
         }
 
         int min = Integer.MAX_VALUE;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n - 1; i++) {
             int cur = 0;
             int[] curArr = Arrays.copyOf(arr, arr.length);
-            for (int j = i; j < n; j++) {
-                // curArr에 h인 값이 t개 인지 확인
-                long count = Arrays.stream(curArr).filter(n -> n == h).count();
+            for (int j = i; j < n - 1; j++) {
+                // curArr에 h인 값이 연속 t개 있는지 확인
+                int count = getCount(curArr, h);
                 if (count == t) {
                     break;
                 }
@@ -45,6 +45,18 @@ public class Main {
         System.out.println(min);
     }
 
+    private static int getCount(int[] curArr, int h) {
+        int count = 0;
+        // 연속으로 h가 존재해야 count 증가
+        for (int i = 0; i < curArr.length; i++) {
+            if (curArr[i] == h) {
+                count++;
+            } else {
+                count = 0;
+            }
+        }
+        return count;
+    }
 
     static class FastReader {
 
