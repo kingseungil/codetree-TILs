@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -21,61 +19,23 @@ public class Main {
             arr2[i] = rd.nextInt();
         }
 
-        // 첫번째 조합에서 가능한 숫자들
-        List<List<Integer>> lists = new ArrayList<>();
-        // 첫번째 조합에서 가능한 숫자들 채워넣기 (거리가 2 이내인 숫자들)
-        for (int i = 0; i < 3; i++) {
-            List<Integer> list = new ArrayList<>();
-            generateValidNum(list, arr1[i]);
-            lists.add(list);
-        }
-
-        // 두번째 조합에서 가능한 숫자들
-        List<List<Integer>> lists2 = new ArrayList<>();
-        // 두번째 조합에서 가능한 숫자들 채워넣기 (거리가 2 이내인 숫자들)
-        for (int i = 0; i < 3; i++) {
-            List<Integer> list = new ArrayList<>();
-            generateValidNum(list, arr2[i]);
-            lists2.add(list);
-        }
-
-        // 첫번째 조합 * 두번째 조합 - 중복되는 경우의 수
-        int comb1 = lists.get(0).size() * lists.get(1).size() * lists.get(2).size();
-        int comb2 = lists2.get(0).size() * lists2.get(1).size() * lists2.get(2).size();
-        int comb = comb1 + comb2;
-
-        // 중복되는 경우의 수를 빼준다.
-        int overlap = 1;
-        for (int i = 0; i < 3; i++) {
-            List<Integer> list1 = lists.get(i);
-            List<Integer> list2 = lists2.get(i);
-            list1.retainAll(list2);
-            overlap *= list1.size();
-        }
-
-        comb -= overlap;
-        if (isSame(arr1, arr2)) { // 첫 번째 조합과 두 번째 조합이 같은 경우
-            System.out.println(1);
-            return;
-        }
-        System.out.println(comb);
-    }
-
-    private static boolean isSame(int[] arr1, int[] arr2) {
-        for (int i = 0; i < arr1.length; i++) {
-            if (arr1[i] != arr2[i]) {
-                return false;
+        int cnt = 0;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                for (int k = 1; k <= n; k++) {
+                    if ((Math.abs(arr1[0] - i) <= 2 || Math.abs(arr1[0] - i) >= n - 2) &&
+                      (Math.abs(arr1[1] - j) <= 2 || Math.abs(arr1[1] - j) >= n - 2) &&
+                      (Math.abs(arr1[2] - k) <= 2 || Math.abs(arr1[2] - k) >= n - 2)) {
+                        cnt++;
+                    } else if ((Math.abs(arr2[0] - i) <= 2 || Math.abs(arr2[0] - i) >= n - 2) &&
+                      (Math.abs(arr2[1] - j) <= 2 || Math.abs(arr2[1] - j) >= n - 2) &&
+                      (Math.abs(arr2[2] - k) <= 2 || Math.abs(arr2[2] - k) >= n - 2)) {
+                        cnt++;
+                    }
+                }
             }
         }
-        return true;
-    }
-
-    private static void generateValidNum(List<Integer> list, int num) {
-        list.add((num - 2 + n - 1) % n + 1);
-        list.add((num - 1 + n - 1) % n + 1);
-        list.add(num);
-        list.add((num + 1 - 1) % n + 1);
-        list.add((num + 2 - 1) % n + 1);
+        System.out.println(cnt);
     }
 
     static class FastReader {
