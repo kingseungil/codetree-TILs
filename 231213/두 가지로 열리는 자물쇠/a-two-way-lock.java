@@ -54,7 +54,20 @@ public class Main {
         }
 
         comb -= overlap;
+        if (isSame(arr1, arr2)) { // 첫 번째 조합과 두 번째 조합이 같은 경우
+            System.out.println(1);
+            return;
+        }
         System.out.println(comb);
+    }
+
+    private static boolean isSame(int[] arr1, int[] arr2) {
+        for (int i = 0; i < arr1.length; i++) {
+            if (arr1[i] != arr2[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private static void generateValidNum(List<Integer> list, int num) {
