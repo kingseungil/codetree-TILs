@@ -21,21 +21,23 @@ public class Main {
 
         int cnt = 0;
         for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= n; j++) {
-                for (int k = 1; k <= n; k++) {
-                    if ((Math.abs(arr1[0] - i) <= 2 || Math.abs(arr1[0] - i) >= n - 2) &&
-                      (Math.abs(arr1[1] - j) <= 2 || Math.abs(arr1[1] - j) >= n - 2) &&
-                      (Math.abs(arr1[2] - k) <= 2 || Math.abs(arr1[2] - k) >= n - 2)) {
-                        cnt++;
-                    } else if ((Math.abs(arr2[0] - i) <= 2 || Math.abs(arr2[0] - i) >= n - 2) &&
-                      (Math.abs(arr2[1] - j) <= 2 || Math.abs(arr2[1] - j) >= n - 2) &&
-                      (Math.abs(arr2[2] - k) <= 2 || Math.abs(arr2[2] - k) >= n - 2)) {
-                        cnt++;
+            if (isValid(i, arr1[0]) || isValid(i, arr2[0])) {
+                for (int j = 1; j <= n; j++) {
+                    if (isValid(j, arr1[1]) || isValid(j, arr2[1])) {
+                        for (int k = 1; k <= n; k++) {
+                            if (isValid(k, arr1[2]) || isValid(k, arr2[2])) {
+                                cnt++;
+                            }
+                        }
                     }
                 }
             }
         }
         System.out.println(cnt);
+    }
+
+    private static boolean isValid(int num, int target) {
+        return Math.abs(target - num) <= 2 || Math.abs(target - num) >= n - 2;
     }
 
     static class FastReader {
