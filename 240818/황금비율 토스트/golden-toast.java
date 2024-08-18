@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -21,30 +22,32 @@ public class Main {
 
             int pointer = states.size(); // 처음에는 맨 뒤를 가리킴
 
+            ListIterator<Character> iterator = states.listIterator(pointer);
+
             for (int i = 0; i < m; i++) {
                 String recipe = br.readLine();
                 char command = recipe.charAt(0);
 
                 switch (command) {
                     case 'L':
-                        if (pointer > 0) {
-                            pointer--;
+                        if (iterator.hasPrevious()) {
+                            iterator.previous();
                         }
                         break;
                     case 'R':
-                        if (pointer < states.size()) {
-                            pointer++;
+                        if (iterator.hasNext()) {
+                            iterator.next();
                         }
                         break;
                     case 'D':
-                        if (pointer < states.size()) {
-                            states.remove(pointer);
+                        if (iterator.hasNext()) {
+                            iterator.next();
+                            iterator.remove();
                         }
                         break;
                     case 'P':
                         char newBread = recipe.charAt(2);
-                        states.add(pointer, newBread);
-                        pointer++;
+                        iterator.add(newBread);
                         break;
                 }
             }
